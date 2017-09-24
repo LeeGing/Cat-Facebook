@@ -24,13 +24,13 @@
 
 /*Cat Facebook */
 .cfb {
-	padding-top:0.5em;
+	padding-top:1.2em;
 	padding-left:5em;
 }
 
 /*Slogan*/
 .slogan {
-	padding-left:14em;
+	padding-left:11em;
 }
 
 /*Login*/
@@ -42,4 +42,5 @@
 
 .navbar {
 	background: #996D73;
+	height: 6.5em;
 }

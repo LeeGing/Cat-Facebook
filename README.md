@@ -25,5 +25,14 @@ Things you may want to cover:
 
 
 Concerns:
-Email - has to take in lowercase into database.
-Create a nav bar.
+1. Email - has to take in lowercase into database.
+2. /users/:id - created.
+		>Unaccessable though redirection.
+		>Users database targetable.
+
+
+Notes: 
+1. Users can target Users database.
+2. CFB icon now links to root.
+3. Root will render sign up form when not in session.
+4. Root will render scroll bar when in session. 

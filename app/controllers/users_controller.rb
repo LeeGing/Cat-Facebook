@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
+  def index
+    @user = User.find(params[:id])
+  end
+
 	def new
+  end
+
+  def show
+    @users = User.where(id: params[:id])
+
   end
 
 
   def create
-
   	user = User.new(user_params)
   	if user.save
   		session[:user_id] = user.id
