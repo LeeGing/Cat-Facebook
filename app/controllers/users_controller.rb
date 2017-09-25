@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
   def show
     @users = User.where(id: params[:id])
-
   end
 
 
@@ -26,7 +25,7 @@ class UsersController < ApplicationController
 private
 		
 		def user_params
-  		params.require(:user).permit(:name, :location, :email.downcase, :password, :password_confirmation)
+  		params.require(:user).permit(:name, :location, :image, :email.downcase, :password, :password_confirmation)
 		end
 
 end

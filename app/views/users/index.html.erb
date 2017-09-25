@@ -2,21 +2,25 @@
 	<div align="center">
 
 		<div class="userprofile">
-			IMG:
-			<img src=<%= @user.name %> height='200px'></img>
+			
+			<img class='userimage' src=<%= @user.image %> height='200px'></img>
 
-			<h2> <%= @user.name %> </h2>
+			<h2 class='username'> <%= @user.name %> </h2>
 
 
-			Name:
-			<h3><%= @user.name %></h3>
+			
 
-			Email:
-			<p><%= @user.email %></p>
-
-			Location:
+			<tr>
+			<td>Email: </td>
+			<td><%= @user.email %></td>
+			</tr>
+			<br/>
+			<tr>
+			<td>Location:</td>
+			<td><%= @user.location %></td>
+			</tr>
 			<!-- A dropdown menu that has locations -->
-			<p><%= @user.location %></p>
+
 
 	</div>
 	<section class="postblock">

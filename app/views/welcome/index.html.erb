@@ -22,6 +22,9 @@
 						<%= f.password_field :password_confirmation, placeholder: "Password Confirmation"  %>
 					</div>
 					<div class="signupformdrop">
+						<%= f.text_field :image, placeholder: "Display Picture URL"  %>
+					</div>
+					<div class="signupformdrop">
 					  <%= f.select :location, [['North America','North America'],['South America','South America'],['Europe','Europe'],['Asia','Asia'],['Africa','Africa']] %>
 					 </div>
 					<br/>

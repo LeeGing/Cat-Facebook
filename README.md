@@ -58,3 +58,4 @@ Idea:
 					  		params.require(:user).permit(:name, :email.downcase, :password, :password_confirmation)
 							end
 					end
+2. Add more details to users and sign up. 
