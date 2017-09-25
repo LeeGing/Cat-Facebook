@@ -1,4 +1,5 @@
 <% if !current_user %>
+<!-- Sign Up -->
 	<div class='signup'>
 		<div class='signupcontent'>
 			<h1 class="signuph1">Sign Up!</h1>
@@ -20,15 +21,30 @@
 					<div class="signupform">
 						<%= f.password_field :password_confirmation, placeholder: "Password Confirmation"  %>
 					</div>
+					<div class="signupformdrop">
+					  <%= f.select :location, [['North America','North America'],['South America','South America'],['Europe','Europe'],['Asia','Asia'],['Africa','Africa']] %>
+					 </div>
 					<br/>
 		  		<%= f.submit "Submit" %>
 				<% end %>
 		</div>
 	</div>
 	<% else %> 
+	<!-- Content Feed -->
 	<main class="container">
+		  	<div align="center">
+				<%= form_for :user, url: '/users' do |f| %>
+					<div class="signupform">
+						<%= f.text_field :title, placeholder: "Title"%>
+					</div>
+					<div class="signupform">
+						<%= f.text_field :content, placeholder: "" %>
+					</div>
+					<br/>
+		  		<%= f.submit "Submit" %>
+				<% end %>
 		<section class="postblock">
-			<p> Display recent posts here </p>
+			<p> </p>
 		</section>
 	</main>
 <% end %>

@@ -29,10 +29,32 @@ Concerns:
 2. /users/:id - created.
 		>Unaccessable though redirection.
 		>Users database targetable.
+3. Query for displaying related wall posts.
 
 
 Notes: 
-1. Users can target Users database.
+1. Users can target Users database and image.
 2. CFB icon now links to root.
 3. Root will render sign up form when not in session.
 4. Root will render scroll bar when in session. 
+
+Idea:
+1. For saving content to databse.
+		>/controller/users_controller.rb
+				>>  def create
+					  	user = User.new(user_params)
+					  	if user.save
+					  		session[:user_id] = user.id
+					  		redirect_to ''
+					  	else 
+					  		redirect_to '/'
+					      flash[:notice] = "Notice: Invalid Entry"
+					  	end
+					  end   
+					    
+					private
+							
+							def user_params
+					  		params.require(:user).permit(:name, :email.downcase, :password, :password_confirmation)
+							end
+					end

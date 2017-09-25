@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-    background-color: pink;
+    background-color: #D8DDE1;
 }
 
 .signup {
@@ -13,6 +13,7 @@ body {
 	border: 1px solid;
 	border-radius:5px;
 	width:40%;
+	background-color: #EEB783;
 
 }
 
@@ -25,12 +26,17 @@ body {
 .signupform {
 	width:100px;
 	margin-bottom:1em;
+}
 
-
+.signupformdrop {
+	width:105%;
+	margin-bottom:1em;
 }
 
 .signupcontent {
-text-align: center ;
+text-align: center;
+margin: auto;
+
 }
 
 .signuph1 {
@@ -43,7 +49,8 @@ main {
 	padding-top: 120px;
 	padding-bottom: 20px;
 	text-align: left;
-	width: 65%	;
+	width: 65%;
+	height: 100%;
 }
 
 section {

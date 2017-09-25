@@ -24,7 +24,7 @@
 
 /*Cat Facebook */
 .cfb {
-	padding-top:1.2em;
+	padding-top:0.3em;
 	padding-left:5em;
 }
 
@@ -41,6 +41,10 @@
 }
 
 .navbar {
-	background: #996D73;
-	height: 6.5em;
+	background: #43C4FA;
+	height: 7em;
+	position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
 }

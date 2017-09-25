@@ -1,8 +1,25 @@
+<main class="container">
+	<div align="center">
 
-<h2> <%= @user.name %> </h2>
+		<div class="userprofile">
+			IMG:
+			<img src=<%= @user.name %> height='200px'></img>
+
+			<h2> <%= @user.name %> </h2>
 
 
-<h1> This is USERS </h1>
+			Name:
+			<h3><%= @user.name %></h3>
 
+			Email:
+			<p><%= @user.email %></p>
 
-<li><%= @user.id %></li>
+			Location:
+			<!-- A dropdown menu that has locations -->
+			<p><%= @user.location %></p>
+
+	</div>
+	<section class="postblock">
+			<p> </p>
+	</section>
+</main>
