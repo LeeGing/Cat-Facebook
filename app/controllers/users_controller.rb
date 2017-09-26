@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   		redirect_to ''
   	else 
   		redirect_to '/'
-      flash[:notice] = "Notice: Invalid Entry"
+      flash[:notice] = "Invalid Entry"
   	end
   end   
     

@@ -25,12 +25,12 @@
 /*Cat Facebook */
 .cfb {
 	padding-top:0.3em;
-	padding-left:5em;
+	padding-left:6em;
 }
 
 /*Slogan*/
 .slogan {
-	padding-left:11em;
+	padding-left:13em;
 }
 
 /*Login*/
@@ -49,3 +49,4 @@
   width: 100%;
   z-index:1;
 }
+

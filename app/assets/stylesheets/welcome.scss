@@ -18,9 +18,12 @@ body {
 }
 
 .notice {
-	background: pink;
-	margin-bottom:5em;
-	width: 8%;
+	padding-top:1em;
+	padding-bottom:2em;
+	background: #43C4FA;
+	margin:auto;
+	margin-bottom:2em;
+	width: 100%;
 }
 
 .signupform {
@@ -57,4 +60,11 @@ section {
 	background-color: pink;
 	width: 75%;
 	margin: auto;
+}
+
+.submit {
+	margin-left:3em;
+	background-color: #D8DDE1;
+  width: 200px;
+  height: 50px;
 }
