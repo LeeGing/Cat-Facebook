@@ -26,9 +26,7 @@ Things you may want to cover:
 
 Concerns:
 1. Email - has to take in lowercase into database.
-2. /users/:id - created.
-		>Unaccessable though redirection.
-		>Users database targetable.
+2. Unable to link to users/:user_id.
 3. Query for displaying related wall posts.
 
 
@@ -37,9 +35,11 @@ Notes:
 2. CFB icon now links to root.
 3. Root will render sign up form when not in session.
 4. Root will render scroll bar when in session. 
+5. session[:user_id] is targetable.
 
 Idea:
-1. For saving content to databse.
+1. Add more details to users and sign up. 
+2. For saving content to databse.
 		>/controller/users_controller.rb
 				>>  def create
 					  	user = User.new(user_params)
@@ -58,4 +58,4 @@ Idea:
 					  		params.require(:user).permit(:name, :email.downcase, :password, :password_confirmation)
 							end
 					end
-2. Add more details to users and sign up. 
+
