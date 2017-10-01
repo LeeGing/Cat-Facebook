@@ -10,7 +10,6 @@
 	  	<div align="center">
 				<%= form_for :user, url: '/users' do |f| %>
 					<div class="signupform">
-
 						<%= f.text_field :name, placeholder: "Name"%>
 					</div>
 					<div class="signupform">
@@ -29,9 +28,7 @@
 					  <%= f.select :location, [['North America','North America'],['South America','South America'],['Europe','Europe'],['Asia','Asia'],['Africa','Africa']] %>
 					 </div>
 					<br/>
-
 		  			<%= f.submit "Submit", :class => "submit"%>
-
 				<% end %>
 		</div>
 	</div>
@@ -39,7 +36,7 @@
 	<!-- Content Feed -->
 	<main class="container">
 		  	<div align="center">
-				<%= form_for :user, url: '/users' do |f| %>
+				<%= form_for :contents, url: '/contents' do |f| %>
 					<div class="signupform">
 						<%= f.text_field :title, placeholder: "Title"%>
 					</div>
