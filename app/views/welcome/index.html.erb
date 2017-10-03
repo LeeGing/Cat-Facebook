@@ -34,7 +34,7 @@
 	</div>
 	<% else %> 
 	<!-- Content Feed -->
-	<main class="container">
+	<main class="container" style="overflow-y: scroll; height:100%;" >
 		  	<div align="center">
 				<%= form_for :contents, url: '/contents' do |f| %>
 					<div class="signupform">
@@ -47,7 +47,14 @@
 		  		<%= f.submit "Submit" %>
 				<% end %>
 		<section class="postblock">
-			<p> </p>
+			<% @content.each do |content| %>
+				<div class='content'> 
+					<p class='contentinfo'>Title:<%= content.title%></p>
+					<p class='contentinfo'>	Content:<%= content.content %> </p>
+					<p class='contentinfo'>	Time:<%=content.created_at %> </p>
+					</p>
+				</div>
+			<%end%>
 		</section>
 	</main>
 <% end %>

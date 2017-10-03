@@ -1,21 +1,19 @@
 class ContentsController < ApplicationController
-	def index
-	end
-	
-  def create
-  	content = Contents.new(content_params)
+
+	  def create
+  	content = Content.new(content_params)
   	if content.save
-  		redirect_to ''
+  		redirect_to '/'
   	else 
   		redirect_to '/'
       flash[:notice] = "Invalid Entry"
   	end
-  end 
-
+  end   
+    
 private
-	
-	def content_params
-		params.require(:content).permit(:title, :content)
-	end
-end
+		
+		def content_params
+  		params.require(:contents).permit(:title, :content)
+		end
 
+end
