@@ -10,7 +10,6 @@
 	  	<div align="center">
 				<%= form_for :user, url: '/users' do |f| %>
 					<div class="signupform">
-
 						<%= f.text_field :name, placeholder: "Name"%>
 					</div>
 					<div class="signupform">
@@ -29,17 +28,15 @@
 					  <%= f.select :location, [['North America','North America'],['South America','South America'],['Europe','Europe'],['Asia','Asia'],['Africa','Africa']] %>
 					 </div>
 					<br/>
-
 		  			<%= f.submit "Submit", :class => "submit"%>
-
 				<% end %>
 		</div>
 	</div>
 	<% else %> 
 	<!-- Content Feed -->
-	<main class="container">
+	<main class="container" style="overflow-y: scroll; height:100%;" >
 		  	<div align="center">
-				<%= form_for :user, url: '/users' do |f| %>
+				<%= form_for :contents, url: '/contents' do |f| %>
 					<div class="signupform">
 						<%= f.text_field :title, placeholder: "Title"%>
 					</div>
@@ -50,7 +47,14 @@
 		  		<%= f.submit "Submit" %>
 				<% end %>
 		<section class="postblock">
-			<p> </p>
+			<% @content.each do |content| %>
+				<div class='content'> 
+					<p class='contentinfo'>Title:<%= content.title%></p>
+					<p class='contentinfo'>	Content:<%= content.content %> </p>
+					<p class='contentinfo'>	Time:<%=content.created_at %> </p>
+					</p>
+				</div>
+			<%end%>
 		</section>
 	</main>
 <% end %>
