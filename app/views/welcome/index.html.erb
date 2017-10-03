@@ -1,20 +1,60 @@
-
-
-<div class='signup'>
-
-	<h1>Sign Up!</h1>
-
-	<% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
-
-		<%= form_for :user, url: '/users' do |f| %>
-
-		  Name: <%= f.text_field :name %>
-		  Email: <%= f.text_field :email %>
-		  Password: <%= f.password_field :password %>
-		  Password Confirmation: <%= f.password_field :password_confirmation %>
-  		<%= f.submit "Submit" %>
-
-		<% end %>
-</div>
+<% if !current_user %>
+<!-- Sign Up -->
+	<div class='signup'>
+		<div class='signupcontent'>
+			<h1 class="signuph1">Sign Up!</h1>
+			<% if flash[:notice] %>
+	    	<div class="notice"><%= flash[:notice] %>
+	    	</div>
+	  	<% end %>
+	  	<div align="center">
+				<%= form_for :user, url: '/users' do |f| %>
+					<div class="signupform">
+						<%= f.text_field :name, placeholder: "Name"%>
+					</div>
+					<div class="signupform">
+						<%= f.text_field :email, placeholder: "Email" %>
+					</div>
+					<div class="signupform">
+						<%= f.password_field :password, placeholder: "Password" %>
+					</div>
+					<div class="signupform">
+						<%= f.password_field :password_confirmation, placeholder: "Password Confirmation"  %>
+					</div>
+					<div class="signupformdrop">
+						<%= f.text_field :image, placeholder: "Display Picture URL"  %>
+					</div>
+					<div class="signupformdrop">
+					  <%= f.select :location, [['North America','North America'],['South America','South America'],['Europe','Europe'],['Asia','Asia'],['Africa','Africa']] %>
+					 </div>
+					<br/>
+		  			<%= f.submit "Submit", :class => "submit"%>
+				<% end %>
+		</div>
+	</div>
+	<% else %> 
+	<!-- Content Feed -->
+	<main class="container" style="overflow-y: scroll; height:100%;" >
+		  	<div align="center">
+				<%= form_for :contents, url: '/contents' do |f| %>
+					<div class="signupform">
+						<%= f.text_field :title, placeholder: "Title"%>
+					</div>
+					<div class="signupform">
+						<%= f.text_field :content, placeholder: "" %>
+					</div>
+					<br/>
+		  		<%= f.submit "Submit" %>
+				<% end %>
+		<section class="postblock">
+			<% @content.each do |content| %>
+				<div class='content'> 
+					<p class='contentinfo'>Title:<%= content.title%></p>
+					<p class='contentinfo'>	Content:<%= content.content %> </p>
+					<p class='contentinfo'>	Time:<%=content.created_at %> </p>
+					</p>
+				</div>
+			<%end%>
+		</section>
+	</main>
+<% end %>

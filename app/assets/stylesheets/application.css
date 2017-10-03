@@ -24,19 +24,29 @@
 
 /*Cat Facebook */
 .cfb {
-	padding-top:0.5em;
-	padding-left:3em;
+	padding-top:0.3em;
+	padding-left:6em;
 }
 
 /*Slogan*/
 .slogan {
-	padding-left:14em;
+	padding-left:15em;
 }
 
 /*Login*/
 .login {
-	
 	position:absolute;
   top:3em;
   right:20px;
 }
+
+.navbar {
+	background: #43C4FA;
+	height: 7em;
+	position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index:1;
+}
+

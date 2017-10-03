@@ -3,19 +3,78 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-    background-color: pink;
+    background-color: #D8DDE1;
 }
 
 .signup {
+	margin:auto;
 	margin-top:10em;
 	padding: 1em 1em 3em 1em;
-
-	border: 1px solid
+	border: 1px solid;
+	border-radius:5px;
+	width:40%;
+	background-color: #EEB783;
 
 }
 
 .notice {
-	background: pink;
-	margin-bottom:10em;
-	width: 8%;
+	padding-top:1em;
+	padding-bottom:2em;
+	background: #43C4FA;
+	margin:auto;
+	margin-bottom:2em;
+	width: 100%;
+}
+
+.signupform {
+	width:100px;
+	margin-bottom:1em;
+}
+
+.signupformdrop {
+	width:105%;
+	margin-bottom:1em;
+}
+
+.signupcontent {
+text-align: center;
+margin: auto;
+
+}
+
+.signuph1 {
+	padding-left: 1em;
+}
+
+main {
+	background-color: white;
+	margin: auto;
+	padding-top: 120px;
+	padding-bottom: 20px;
+	text-align: left;
+	width: 65%;
+
+}
+
+section {
+	background-color: pink;
+	width: 75%;
+	margin: auto;
+}
+
+.submit {
+	margin-left:3em;
+	background-color: #D8DDE1;
+  width: 200px;
+  height: 50px;
+}
+
+.content {
+	border: 0.5px solid;
+}
+
+
+.containerinfo {
+overflow: auto;
+    word-wrap: break-word;
 }
