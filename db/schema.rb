@@ -34,4 +34,5 @@ ActiveRecord::Schema.define(version: 20171001000259) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "contents", "users"
 end

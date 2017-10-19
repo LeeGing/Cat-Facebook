@@ -39,16 +39,16 @@
 				<%= form_for :contents, url: '/contents' do |f| %>
 					<div class="signupform">
 						<%= f.text_field :title, placeholder: "Title"%>
-					</div>
-					<div class="signupform">
 						<%= f.text_field :content, placeholder: "" %>
+<!-- 						<%= hidden_field_tag :user_id, session[:user_id] %> -->
 					</div>
 					<br/>
 		  		<%= f.submit "Submit" %>
 				<% end %>
 		<section class="postblock">
-			<% @content.reverse.each	 do |content| %>
+			<% @content.reverse.each do |content| %>
 				<div class='content'> 
+					<p class='contentinfo'><%= content.user_id%></p>
 					<p class='contentinfo'><%= content.title%></p>
 					<p>- - -</p>
 					<p class='contentinfo'><%= content.content %> </p>
