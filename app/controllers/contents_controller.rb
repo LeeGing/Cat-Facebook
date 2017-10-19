@@ -10,8 +10,6 @@ class ContentsController < ApplicationController
   	if content.save
       # THIS IS THE IDEA, I THINK I HAD THE ASSIGNMENT ORDER WRONG. THIS IS PROBABLY 
       # THE RIGHT ORDER. TEST THIS!!!
-      content.user_id = user_id
-
   		redirect_to '/'
   	else 
   		redirect_to '/'
@@ -22,7 +20,7 @@ class ContentsController < ApplicationController
 private
 		
 		def content_params
-  		params.require(:contents).permit(:title, :content)
+  		params.require(:contents).permit(:user_id, :user_name, :user_image, :content)
 		end
 
 end

@@ -39,7 +39,9 @@
 				<%= form_for :contents, url: '/contents' do |f| %>
 					<div class="signupform">
 						<div style="display: none;">
-							<%= f.text_field :title, :value => @name %>
+							<%= f.text_field :user_id, :value => current_user.id %>
+							<%= f.text_field :user_name, :value => current_user.name %>
+							<%= f.text_field :user_image, :value => current_user.image %>							
 						</div>
 						<%= f.text_field :content, placeholder: "" %>
 <!-- 						<%= hidden_field_tag :user_id, session[:user_id] %> -->
@@ -50,8 +52,9 @@
 		<section class="postblock">
 			<% @content.reverse.each do |content| %>
 				<div class='content'> 
+					<img src=<%= content.user_image %>>
+					<p class='contentinfo'><%= content.user_name%></p>
 					<p class='contentinfo'><%= content.user_id%></p>
-					<p class='contentinfo'><%= content.title%></p>
 					<p>- - -</p>
 					<p class='contentinfo'><%= content.content %> </p>
 					<p class='contentinfo'>	Time:<%=content.created_at %> </p>
