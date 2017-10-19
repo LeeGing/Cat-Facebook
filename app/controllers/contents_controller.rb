@@ -11,6 +11,7 @@ class ContentsController < ApplicationController
       # THIS IS THE IDEA, I THINK I HAD THE ASSIGNMENT ORDER WRONG. THIS IS PROBABLY 
       # THE RIGHT ORDER. TEST THIS!!!
       content.user_id = user_id
+
   		redirect_to '/'
   	else 
   		redirect_to '/'
