@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  resources :contents, only: [:index, :show, :destroy] do
   resources :reviews, only: [:create, :destroy]
+  end
 
 
   get '/login' => 'session#new'
@@ -20,9 +22,11 @@ Rails.application.routes.draw do
 
   post '/comments' => 'comments#create'
 
-  post '/delete' => 'comments#destroy'
+  post '/reviews/delete' => 'comments#destroy'
 
   get '/delete/:id' => 'comments#show'
+
+  post '/contents/:id' => 'contents#destroy'
   # get '/users/:id'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
