@@ -53,7 +53,9 @@
 			<% @content.reverse.each do |content| %>
 				<div class='content'> 
 					<img src=<%= content.user_image %>>
-					<p class='contentinfo'><%= content.user_name%></p>
+					<div>
+						<a href="users/<%= content.user_id.to_s %>"> <%= content.user_name%> </a>
+					</div>
 					<p class='contentinfo'><%= content.user_id%></p>
 					<p>- - -</p>
 					<p class='contentinfo'><%= content.content %> </p>

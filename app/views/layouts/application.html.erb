@@ -19,8 +19,8 @@
 
 <% if current_user %>
   <div class="login">
-   <%= current_user.name %> | <%link_to image_tag("https://image.flaticon.com/icons/svg/23/23390.svg"), "http://www.mysite.com/"%>
-
+    <%= current_user.name %> |
+    <a href='/users/<%= current_user.id.to_s %>'>Profile</a> |
     <%= link_to "Logout", '/logout' %>
   </div>
 <% else %>
