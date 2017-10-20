@@ -1,4 +1,7 @@
 <% if !current_user %>
+ <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
 <!-- Sign Up -->
 	<div class='signup'>
 		<div class='signupcontent'>
@@ -36,6 +39,9 @@
 	<!-- Content Feed -->
 	<main class="container" style="overflow-y: scroll; height:100%;" >
 		  	<div align="center">
+	 <% if flash[:notice] %>
+    <div><%= flash[:notice] %></div>
+  <% end %>
 				<%= form_for :contents, url: '/contents' do |f| %>
 					<div class="signupform">
 						<div style="display: none;">
@@ -51,6 +57,7 @@
 				<% end %>
 		<section class="postblock">
 			<% @content.reverse.each do |content| %>
+				<h1> <%= content.id %> </h1>
 				<div class='content'> 
 					<img src=<%= content.user_image %>>
 					<div>
@@ -60,7 +67,35 @@
 					<p>- - -</p>
 					<p class='contentinfo'><%= content.content %> </p>
 					<p class='contentinfo'>	Time:<%=content.created_at %> </p>
-					</p>
+					<div>
+						<%= form_for :comments, url: '/comments' do |f| %>
+							<div class="signupform">
+								<div style="display: none;">
+									<%= f.text_field :content_id, :value => content.id %>
+									<%= f.text_field :user_id, :value => current_user.id %>
+									<%= f.text_field :user_name, :value => current_user.name %>
+									<%= f.text_field :user_image, :value => current_user.image %>							
+								</div>
+								<%= f.text_field :comment, placeholder: "" %>
+							</div>
+							<br/>
+			  			<%= f.submit "Submit" %>
+			  		<% end %>
+			  			<div>
+								<% @comment.each do |comment| %>
+									<% if comment.content_id === content.id %>
+										<p> <%= comment.user_name %> </p>
+										<p> <%= comment.comment %> </p>
+										<p> <%= comment.created_at %> </p>
+						        <% if comment.user_id == current_user.id %>
+		<%= button_to "delete", {:controller => :comments,
+      :action => 'destroy', :id => comment.id }, :method => :contentdelete %>
+						        <% end %>
+									<%end%>
+
+								<% end %>
+							</div>
+					</div>
 				</div>
 			<%end%>
 		</section>

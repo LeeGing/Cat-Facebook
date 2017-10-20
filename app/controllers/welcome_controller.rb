@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
   def index
   	@content = Content.all
+  	@comment = Comment.all
   	@current_user = current_user
   end
 

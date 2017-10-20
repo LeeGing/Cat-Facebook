@@ -1,5 +1,4 @@
 class ContentsController < ApplicationController
-  attr_accessor :user_id
 
   def index
     @user_id = session[:user_id]
