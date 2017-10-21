@@ -1,5 +1,5 @@
 <% if !current_user %>
- <% if flash[:notice] %>
+ <% if flash.now[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
 <!-- Sign Up -->
@@ -42,6 +42,7 @@
 	 <% if flash[:notice] %>
     <div><%= flash[:notice] %></div>
   <% end %>
+  <!-- Content Form -->
 				<%= form_for :contents, url: '/contents' do |f| %>
 					<div class="signupform">
 						<div style="display: none;">
@@ -54,6 +55,7 @@
 					<br/>
 		  		<%= f.submit "Submit" %>
 				<% end %>
+				<!-- Content Blocks -->
 		<section class="postblock">
 			<% @content.reverse.each do |content| %>
 				<h1> <%= content.id %> </h1>
@@ -66,36 +68,75 @@
 					<p>- - -</p>
 					<p class='contentinfo'><%= content.content %> </p>
 					<p class='contentinfo'>	Time:<%=content.created_at %> </p>
+					<!-- Like Button -->
+
+
+		<!-- if the user has a like on this post -->
+								<%= form_for :likes, url: '/likes' do |f| %>
+										<div class="signupform">
+											<div style="display: none;">
+												<%= f.text_field :content_id, :value => content.id %>
+												<%= f.text_field :user_id, :value => current_user.id %>
+												<%= f.text_field :user_name, :value => current_user.name %>					
+											</div>
+										</div>
+										<br/>
+						  			<%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/21/21645.svg", :height => '5%' %>
+						  		<% end %>
+
+
+
+
+
+
+									  				<!-- Likes Renderer -->
+															<% likes = 0 %>
+														<% @like.each do |like| %>
+															<% if content.id === like.content_id %>
+															<% likes += 1 %>
+
+															<%end%>
+
+														<% end %>
+															<p> x<%= likes %> </p>
+
+
+
+
 					<% if content.user_id == current_user.id %>
 						<%= button_to "delete", {:controller => :contents, :action => 'destroy', :id => content.id }, :method => :contentdelete %>
 					<% end %>
 					<div>
-						<%= form_for :comments, url: '/comments' do |f| %>
-							<div class="signupform">
-								<div style="display: none;">
-									<%= f.text_field :content_id, :value => content.id %>
-									<%= f.text_field :user_id, :value => current_user.id %>
-									<%= f.text_field :user_name, :value => current_user.name %>
-									<%= f.text_field :user_image, :value => current_user.image %>							
+						<div>
+							<!-- Comment Form -->
+							<%= form_for :comments, url: '/comments' do |f| %>
+								<div class="signupform">
+									<div style="display: none;">
+										<%= f.text_field :content_id, :value => content.id %>
+										<%= f.text_field :user_id, :value => current_user.id %>
+										<%= f.text_field :user_name, :value => current_user.name %>
+										<%= f.text_field :user_image, :value => current_user.image %>							
+									</div>
+									<%= f.text_field :comment, placeholder: "" %>
 								</div>
-								<%= f.text_field :comment, placeholder: "" %>
-							</div>
-							<br/>
-			  			<%= f.submit "Submit" %>
-			  		<% end %>
-			  			<div>
-								<% @comment.each do |comment| %>
-									<% if comment.content_id === content.id %>
-										<p> <%= comment.user_name %> </p>
-										<p> <%= comment.comment %> </p>
-										<p> <%= comment.created_at %> </p>
-						        <% if comment.user_id == current_user.id %>
-											<%= button_to "delete", {:controller => :comments, :action => 'destroy', :id => comment.id }, :method => :contents_delete %>
-						        <% end %>
-									<%end%>
+								<br/>
+				  			<%= f.submit "Submit" %>
+				  		<% end %>
+				  			<div>
+				  				<!-- Comment Blocks -->
+									<% @comment.each do |comment| %>
+										<% if comment.content_id === content.id %>
+											<p> <%= comment.user_name %> </p>
+											<p> <%= comment.comment %> </p>
+											<p> <%= comment.created_at %> </p>
+							        <% if comment.user_id == current_user.id %>
+												<%= button_to "delete", {:controller => :comments, :action => 'destroy', :id => comment.id }, :method => :contents_delete %>
+							        <% end %>
+										<%end%>
 
-								<% end %>
-							</div>
+									<% end %>
+								</div>
+						</div>
 					</div>
 				</div>
 			<%end%>
