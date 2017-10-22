@@ -14,7 +14,6 @@ body {
 	border-radius:5px;
 	width:40%;
 	background-color: #EEB783;
-
 }
 
 .notice {
@@ -27,6 +26,7 @@ body {
 }
 
 .signupform {
+	position:relative;
 	width:100px;
 	margin-bottom:1em;
 }
@@ -47,6 +47,7 @@ margin: auto;
 }
 
 main {
+	position:relative;
 	background-color: white;
 	margin: auto;
 	padding-top: 120px;
@@ -57,8 +58,9 @@ main {
 }
 
 section {
-	background-color: pink;
 	width: 75%;
+	position:relative;
+	background-color: pink;
 	margin: auto;
 }
 
@@ -70,11 +72,62 @@ section {
 }
 
 .content {
-	border: 0.5px solid;
+	position:relative;
+	margin:3em;
+}
+
+input {
+	margin-bottom: 0.5em;
 }
 
 
+.signupform select {
+	width: 130px;
+}
+
+.container {
+	margin:relative;
+}
+
 .containerinfo {
-overflow: auto;
-    word-wrap: break-word;
+	overflow: auto;
+  word-wrap: break-word;
+}
+
+.content {
+	margin:auto;
+}
+
+.contentsform input {
+	width: 20em;
+	height: 5em;
+}
+
+.userimg {
+max-height:100px; 
+max-width:100px;
+border: 1px solid;
+float:left;
+margin: 2em;
+}
+
+.username {
+	float:left;
+	margin-top: 2em;
+	font-size: 20px;
+}
+
+
+
+.contentinfo {
+	margin-top: 20px;
+}
+
+.userblockborder {
+	border: 1px solid;
+	padding:65px;
+}
+
+.postblockcontent {
+	margin: 200px;
 }
