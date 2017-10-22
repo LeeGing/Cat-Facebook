@@ -4,6 +4,7 @@
 
 body {
     background-color: #D8DDE1;
+    min-width: 815px;
 }
 
 .signup {
@@ -54,13 +55,14 @@ main {
 	padding-bottom: 20px;
 	text-align: left;
 	width: 65%;
+	min-width: 65%;
 
 }
 
 section {
 	width: 75%;
 	position:relative;
-	background-color: pink;
+	background-color: white;
 	margin: auto;
 }
 
@@ -105,19 +107,19 @@ input {
 
 .userimg {
 max-height:100px; 
-max-width:100px;
+max-width:60px;
+
 border: 1px solid;
-float:left;
-margin: 2em;
+margin-top:25px;
 }
 
-.username {
-	float:left;
-	margin-top: 2em;
-	font-size: 20px;
+.userblock a {
+	font-size: 30px;
 }
 
+.block {
 
+}
 
 .contentinfo {
 	margin-top: 20px;
@@ -125,9 +127,11 @@ margin: 2em;
 
 .userblockborder {
 	border: 1px solid;
-	padding:65px;
+	border-bottom: 0px;
+	padding-bottom:10px;
 }
 
-.postblockcontent {
-	margin: 200px;
+.blockcontent {
+	border:1px solid;
+
 }

@@ -28,7 +28,7 @@
 	
 <!-- Content Feed -->
 	<main class="container" style="overflow-y: scroll; height:100%;" >
-		<div align="center">
+		<div class='contentcolumn' align="center">
 	 		<% if flash[:notice] %>
     		<div><%= flash[:notice] %></div>
  		 	<% end %>
@@ -52,15 +52,17 @@
 				<% @content.reverse.each do |content| %>
 				<div class='block'>
 					<div class='userblock'>
-						<img class ='userimg' src=<%= content.user_image %>>
-						<a class='username'href="users/<%= content.user_id.to_s %>"> <%= content.user_name%></a>
-					</div>
 					<div class='userblockborder'>
-					</div>
-					<div class=post'blockcontent'>
-						<p><%= content.content %> </p>
+						<img class='userimg' height="60px" width="60px" `class ='userimg' src=<%= content.user_image %>>
+						<div class='username'>
+						<a href="users/<%= content.user_id.to_s %>"> <%= content.user_name%></a>
 						<p class='contenttime'>	Time:<%=content.created_at %> </p>
 					</div>
+						<p> 
+					</div>
+					</div>
+					<div class='blockcontent'>
+						<p><%= content.content %> </p>
 						
 <!-- Like Button -->
 					<%= form_for :likes, url: '/likes' do |f| %>
@@ -83,6 +85,7 @@
 						<%end%>
 					<% end %>
 					<p> x<%= likes %> </p>
+					</div>
 
 
 <!-- Content Delete Button -->

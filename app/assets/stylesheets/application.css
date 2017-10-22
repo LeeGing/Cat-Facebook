@@ -49,5 +49,6 @@
   width: 100%;
   min-width: 500px;
   z-index:1;
+  min-width:600px;
 }
 
