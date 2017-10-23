@@ -57,6 +57,10 @@
 						<div class='username'>
 						<a href="users/<%= content.user_id.to_s %>"> <%= content.user_name%></a>
 						<p class='contenttime'>	Time:<%=content.created_at %> </p>
+<!-- Content Delete Button -->
+					<% if content.user_id == current_user.id %>
+						<%= button_to "Delete Post", {:controller => :contents, :action => 'destroy', :id => content.id }, :method => :contentdelete %>
+					<% end %>
 					</div>
 						<p> 
 					</div>
@@ -65,6 +69,17 @@
 						<p><%= content.content %> </p>
 						
 <!-- Like Button -->
+				<% liked = false %>
+				<% likedid = 0 %>
+				<% @like.each do |like| %>
+					<% if like.content_id === content.id %>
+						<% if like.user_id === current_user.id %>
+							<% liked = true %>
+							<% likedid = like.id %>
+						<% end %>
+					<% end %>
+				<% end %>
+				<% if liked != true %>
 					<%= form_for :likes, url: '/likes' do |f| %>
 						<div class="signupform">
 							<div style="display: none;">
@@ -74,8 +89,13 @@
 							</div>
 						</div>
 						<br/>
-					  <%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/21/21645.svg", :height => '5%' %>
-					<% end %>
+					  	<%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/21/21645.svg", :height => '5%' %>
+					  	<% end %>
+			  <% else %>
+			 		<%= button_to "Remove Like", {:controller => :likes, :action => 'destroy', :id => likedid }, :method => :contents_delete%>
+			  <% end %>
+
+
 
 <!-- Likes Renderer -->
 					<% likes = 0 %>
@@ -84,14 +104,10 @@
 							<% likes += 1 %>
 						<%end%>
 					<% end %>
-					<p> x<%= likes %> </p>
+					<p>This post was liked <%= likes %> times.</p>
 					</div>
 
 
-<!-- Content Delete Button -->
-					<% if content.user_id == current_user.id %>
-						<%= button_to "delete", {:controller => :contents, :action => 'destroy', :id => content.id }, :method => :contentdelete %>
-					<% end %>
 
 <!-- Comment Form -->
 					<%= form_for :comments, url: '/comments' do |f| %>

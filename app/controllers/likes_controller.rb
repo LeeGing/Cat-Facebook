@@ -13,6 +13,14 @@ class LikesController < ApplicationController
 		end
 	end
 
+	def destroy
+    @like = Like.find(params[:id])
+    @like.destroy
+    redirect_to '/'
+    flash[:notice] = 'Your like has been removed.'
+    sleep(1.0)
+	end
+
   private
 		
 	def like_params
