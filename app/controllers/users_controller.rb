@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def index
     @user = User.find(params[:id])
+    @content = Content.all
+    @like = Like.all
+    @comment = Comment.all
   end
 
 	def new
@@ -17,7 +20,7 @@ class UsersController < ApplicationController
   		session[:user_id] = user.id
   		redirect_to ''
   	else 
-  		redirect_to '/'
+  		redirect_to ''
       flash[:notice] = "Invalid Entry"
   	end
   end   
@@ -29,4 +32,3 @@ private
 		end
 
 end
-

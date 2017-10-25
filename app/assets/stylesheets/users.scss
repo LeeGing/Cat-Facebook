@@ -4,15 +4,34 @@
 
 .userimage{
 float:left;
-margin-right:10px;
+margin:0px;	
 }
 
 .userprofile {
-	margin-top:5em;
-	margin-left:10em;
-	font-weight:bold;
+  margin-top:2em;
+  margin-left:10em;
+  font-weight:bold;
 }
 
 .container {
-	height: 17em;
+  height: 17em;
 }
+
+.userblock {
+  background-color: #43C4FA;
+  color: #4C4B63;
+  margin-top:200px;
+}
+
+.userblock a {
+  font-size: 30px;
+  color: white;
+
+}
+
+.userblockborder {
+  border: 1px solid;
+  border-bottom: 0px;
+  padding-bottom:10px;
+}
+
