@@ -53,7 +53,7 @@
 				<div class='block'>
 					<div class='userblock'>
 					<div class='userblockborder'>
-						<img class='userimg' height="60px" width="60px" `class ='userimg' src=<%= content.user_image %>>
+						<img class='userimg' height="60px" width="60px" src=<%= content.user_image %>>
 						<div class='username'>
 						<a href="users/<%= content.user_id.to_s %>"> <%= content.user_name%></a>
 						<p class='contenttime'>	Time:<%=content.created_at %> </p>
@@ -108,10 +108,11 @@
 					</div>
 
 <!-- Comment Blocks -->
-					<h3> Comments </h3>
+					<h3 class = "commenth3"> Comments </h3>
 						<% @comment.each do |comment| %>
 							<% if comment.content_id === content.id %>
 							<div class='commentblock'>
+								<img class='userimg' height="60px" width="60px" src=<%= comment.user_image %>>
 								<p> <%= comment.user_name %> </p>
 								<p> <%= comment.comment %> </p>
 								<p> <%= comment.created_at %> </p>
@@ -134,7 +135,9 @@
 									<%= f.text_field :user_name, :value => current_user.name %>
 									<%= f.text_field :user_image, :value => current_user.image %>							
 								</div>
-									<%= f.text_field :comment, placeholder: "", style: 'width: 200px; display: block; align: center' %>
+							</div>
+							<div class='commentform'>
+									<%= f.text_field :comment, placeholder: "Enter Comment Here", style: 'width: 200px; display: block; text-align: center' %>
 							</div>
 							<br/>
 			  			<%= f.submit "Submit" %>
