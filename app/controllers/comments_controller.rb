@@ -9,20 +9,22 @@ class CommentsController < ApplicationController
 	def create
 		comment = Comment.new(comment_params)
 		if comment.save
-			redirect_to '/'
+			redirect_back fallback_location: root_path
 			flash[:notice] = 'Your comment has been posted.'
 			sleep(1.0)
 		else 
-			redirect_to '/'
+			redirect_back fallback_location: root_path	
 			flash[:notice] = 'There was a problem with your comment.'
 			sleep(1.0)
 		end
 	end
 
+
 	def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to '/'
+    redirect_back fallback_location: root_path
+
     flash[:notice] = 'Your comment has been deleted.'
     sleep(1.0)
 	end

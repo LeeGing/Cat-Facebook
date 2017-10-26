@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .userimage{
 float:left;
 margin:0px;	
@@ -11,16 +12,12 @@ margin:0px;
   margin-top:2em;
   margin-left:10em;
   font-weight:bold;
-}
-
-.container {
-  height: 17em;
+  margin-bottom: 200px;
 }
 
 .userblock {
   background-color: #43C4FA;
   color: #4C4B63;
-  margin-top:200px;
 }
 
 .userblock a {
@@ -32,6 +29,99 @@ margin:0px;
 .userblockborder {
   border: 1px solid;
   border-bottom: 0px;
-  padding-bottom:10px;
+}
+
+
+.container {
+  margin:relative;
+}
+
+.containerinfo {
+  overflow: auto;
+  word-wrap: break-word;
+}
+
+
+.userimg {
+max-height:60px; 
+max-width:60px;
+border: 1px solid;
+margin-top:25px;
+}
+
+.userblock {
+  color: #4C4B63;
+  display:inline;
+}
+
+.userblock a {
+  color: white;
+}
+
+.contentinfo {
+  margin-top: 20px;
+}
+
+.userblockborder {
+  border: 1px solid;
+  background-color: #43C4FA;
+}
+
+.blockcontent {
+  border:1px solid;
+}
+
+.commentblock {
+  border:2px solid;
+  border-top: 0.5px solid;
+  border-bottom: 0.5px solid;
+  margin-bottom: 20px;
+  width: 60%;
+}
+
+.commentform {
+  margin-bottom: 30px;
+
+}
+
+.contentcolumn form{
+  margin-top: 50px;
+  margin-bottom:80px;
+}
+
+.commenth3 {
+  border: 1px solid;
+  width: 60%;
+}
+
+.block {
+  padding-bottom: 10px;
+}
+
+.usercommentborder {
+  border: 1px solid;
+  background-color: #43C4FA;
+  padding-bottom: 10px;
+  padding-right:2px;
+  text-align:left;
+}
+
+.commentusername {
+  margin-top:30px;
+  color:white;
+  text-decoration: none;
+}
+
+.commentusername a {
+  color:white;
+  text-decoration: none;
+}
+
+.comment {
+  margin:20px;
+}
+
+.contentpost{
+  padding-top:30px;
 }
 

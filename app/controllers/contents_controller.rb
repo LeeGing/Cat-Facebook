@@ -7,7 +7,8 @@ class ContentsController < ApplicationController
   def destroy
     @content = Content.find(params[:id])
     @content.destroy
-    redirect_to '/'
+    redirect_back fallback_location: root_path
+
     flash[:notice] = 'Your post has been deleted.'
     sleep(1.0)
   end
@@ -15,7 +16,7 @@ class ContentsController < ApplicationController
   def create
   content = Content.new(content_params)
   if content.save
-    redirect_to '/'
+    redirect_back fallback_location: root_path
   else 
     redirect_to '/'
     flash[:notice] = "Invalid Entry"

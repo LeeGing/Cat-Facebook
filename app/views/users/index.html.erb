@@ -52,6 +52,10 @@
 
 
   </div>
+
+  <% if flash[:notice] %>
+        <div class='flashnotice'><%= flash[:notice] %></div>
+      <% end %>
   <section class="postblock">
 <div align='center'>
       <% @content.reverse.each do |content| %>
@@ -63,17 +67,19 @@
             <div class='username'>
             <a href="users/<%= content.user_id.to_s %>"> <%= content.user_name%></a>
             <p class='contenttime'> Time:<%=content.created_at %> </p>
-<!-- Content Delete Button -->
-          <% if content.user_id == current_user.id %>
-            <%= button_to "Delete Post", {:controller => :contents, :action => 'destroy', :id => content.id }, :method => :contentdelete %>
-          <% end %>
           </div>
             <p> 
           </div>
           </div>
           <div class='blockcontent'>
-            <p><%= content.content %> </p>
-      <p> </p>
+            <div class='contentpost'>
+              <p><%= content.content %> </p>
+<!-- Content Delete Button -->
+          <% if content.user_id == current_user.id %>
+            <%= button_to "Delete Post", {:controller => :contents, :action => 'destroy', :id => content.id }, :method => :contentdelete %>
+          <% end %>
+            </div>
+
 
       <!-- Like Button -->
         <% liked = false %>
@@ -119,13 +125,17 @@
             <% @comment.each do |comment| %>
               <% if comment.content_id === content.id %>
               <div class='commentblock'>
+            <div class='usercommentborder'>
                 <img class='userimg' height="60px" width="60px" src=<%= comment.user_image %>>
-                <p> <%= comment.user_name %> </p>
-                <p> <%= comment.comment %> </p>
+                <div class="commentusername">
+                  <a href="/users/<%= comment.user_id.to_s %>"> <%= comment.user_name%></a>
+                </div>
                 <p> <%= comment.created_at %> </p>
+              </div>
+                <p> <%= comment.comment %> </p>
 <!-- Comment Delete Button -->
                 <% if comment.user_id == current_user.id %>
-                  <%= button_to "delete", {:controller => :comments, :action => 'destroy', :id => comment.id }, :method => :contents_delete %>
+                  <%= button_to "Delete", {:controller => :comments, :action => 'destroy', :id => comment.id }, :method => :contents_delete %>
                 <% end %>
           </div>
               <% end %> 
