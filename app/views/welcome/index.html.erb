@@ -29,9 +29,6 @@
 <!-- Content Feed -->
 	<main class="container" style="overflow-y: scroll; height:100%;" >
 		<div class='contentcolumn' align="center">
-	 		<% if flash[:notice] %>
-    		<div class='flashnotice'><%= flash[:notice] %></div>
- 		 	<% end %>
 <div>
 <!-- Content Form -->
 <img class='house' src="https://image.flaticon.com/icons/svg/88/88003.svg" height="50px">
@@ -47,6 +44,10 @@
 				<br/>
 		  	<%= f.submit "Submit" %>
 			<% end %>
+	 		
+	 		<% if flash[:notice] %>
+    		<div class='flashnotice'><%= flash[:notice] %></div>
+ 		 	<% end %>
 <!-- Content Blocks -->
 			<section class="postblock">
 				<% @content.reverse.each do |content| %>

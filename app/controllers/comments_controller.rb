@@ -24,7 +24,6 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_back fallback_location: root_path
-
     flash[:notice] = 'Your comment has been deleted.'
     sleep(1.0)
 	end
