@@ -21,6 +21,7 @@
   <div class="login">
     <%= current_user.name %> |
     <a href='/users/<%= current_user.id.to_s %>'>Profile</a> |
+    <%= link_to "Saves", '/saved' %> |
     <%= link_to "Logout", '/logout' %>
   </div>
 <% else %>

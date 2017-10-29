@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   get '/users/:id' => 'users#index'
 
+
   post '/comments' => 'comments#create'
 
   post '/reviews/delete' => 'comments#destroy'
@@ -31,6 +32,12 @@ Rails.application.routes.draw do
   post '/likes' => 'likes#create'
 
   post '/likes/:id' => 'likes#destroy'
+
+  post '/saves' => 'saves#create'
+
+  post '/saves:id' => 'saves#destroy'
+
+  get '/saved' => 'saves#index'
   # get '/users/:id'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

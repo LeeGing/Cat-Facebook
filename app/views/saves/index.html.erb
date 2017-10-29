@@ -29,44 +29,26 @@
 <!-- Content Feed -->
 	<main class="container" style="overflow-y: scroll; height:100%;" >
 		<div class='contentcolumn' align="center">
-<div>
-<!-- Content Form -->
-<img class='house' src="https://image.flaticon.com/icons/svg/88/88003.svg" height="50px">
-			<%= form_for :contents, url: '/contents' do |f| %>
-				<div class="contentsform">
-					<div style="display: none;">
-						<%= f.text_field :user_id, :value => current_user.id %>
-						<%= f.text_field :user_name, :value => current_user.name %>
-						<%= f.text_field :user_image, :value => current_user.image %>
-					</div>
-					<%= f.text_field :content, placeholder: "What are you thinking about?" %>
-				</div>
-				<br/>
-		  	<%= f.submit "Submit" %>
-			<% end %>
-	 		
-	 		<% if flash[:notice] %>
-    		<div class='flashnotice'><%= flash[:notice] %></div>
- 		 	<% end %>
+
 <!-- Content Blocks -->
 			<section class="postblock">
 				<% @content.reverse.each do |content| %>
-
-					<div class='userblock'>
-					<div class='userblockborder'>
-						<img class='userimg' height="60px" width="60px" src=<%= content.user_image %>>
-						<div class='username'>
-						<a href="users/<%= content.user_id.to_s %>"> <%= content.user_name%></a>
-						<p class='contenttime'>	Time:<%=content.created_at %> </p>
-
-					</div>
-						<p> 
-					</div>
-					</div>
-					<div class='blockcontent'>
-						<div class='contentpost'>
-							<p><%= content.content %> </p>
-						</div>
+					<% @save.each do |save| %>
+						<% if save.user_id === current_user.id && content.id === save.content_id %>
+							<p> Saved on: <%= save.created_at %> </p>
+							<div class='userblock'>
+								<div class='userblockborder'>
+									<img class='userimg' height="60px" width="60px" src=<%= content.user_image %>>
+										<div class='username'>
+											<a href="users/<%= content.user_id.to_s %>"> <%= content.user_name%></a>
+											<p class='contenttime'>	Time:<%=content.created_at %> </p>
+										</div>
+								</div>
+							</div>
+							<div class='blockcontent'>
+								<div class='contentpost'>
+									<p><%= content.content %> </p>
+								</div>
 <!-- Content Delete Button -->
 					<% if content.user_id == current_user.id %>
 						<%= button_to "Delete Post", {:controller => :contents, :action => 'destroy', :id => content.id }, :method => :contentdelete %>
@@ -186,6 +168,8 @@
 			  		<% end %>
 			  	</div>
 					<%end%>
+					<% end %>
+					<%end %>
 				</div>
 		</section>
 	</div>
