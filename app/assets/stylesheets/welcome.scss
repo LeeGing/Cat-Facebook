@@ -27,13 +27,13 @@ body {
 	width: 100%;
 }
 
-.signupform {
+.cscform {
 	position:relative;
 	width:100px;
 	margin-bottom:1em;
 }
 
-.signupformdrop {
+.cscformdrop {
 	width:105%;
 	margin-bottom:1em;
 }
@@ -79,11 +79,11 @@ section {
 	margin:3em;
 }
 
-.signupform select {
+.cscform select {
 	width: 137px;
 }
 
-.signupform input {
+.cscform input {
 	margin: 3px;
 }
 
@@ -210,4 +210,16 @@ float:left;
 	color:white;
 	text-decoration: none;
 	font-size:20px;
+}
+
+.likebutton {
+	float:right; 
+	margin-top:48px;
+	margin-right:180px;
+}
+
+.savebutton {
+float:left;
+margin-bottom:100px;
+margin-left: 180px;
 }

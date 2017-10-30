@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @content = Content.all
     @like = Like.all
     @comment = Comment.all
+    @save = Save.all
   end
 
 	def new

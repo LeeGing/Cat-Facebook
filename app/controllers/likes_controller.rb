@@ -2,10 +2,9 @@ class LikesController < ApplicationController
 
 	def create
 		like = Like.new(like_params)
+		if like.save
 			flash[:notice] = 'Your like has been posted.'
 			redirect_back fallback_location: root_path
-		if like.save
-			sleep(1.0)
 		else 
 			redirect_back fallback_location: root_path
 			flash[:notice] = 'There was a problem with your like.'
