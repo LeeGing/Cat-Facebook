@@ -60,8 +60,8 @@ margin-top:25px;
 
 .blockcontent {
   border:1px solid;
+  padding-bottom:30px;
 }
-
 
 .commentform {
   margin-bottom: 30px;
@@ -101,3 +101,13 @@ margin-top:25px;
   padding-top:30px;
 }
 
+.userlikebutton {
+  float:right; 
+  margin-top:35px;
+  margin-right:200px;
+}
+
+.usersavebutton {
+  float:left; 
+  margin-left:200px;
+}
