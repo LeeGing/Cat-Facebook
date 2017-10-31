@@ -30,6 +30,17 @@
         </tr>
         <br/>
         <tr>
+          <td>Number of Followers:</td>
+          <% followers = 0 %>
+          <% @follow.reverse.each do |follow| %>
+            <% if follow.following_id == @user.id %> 
+              <% followers += 1 %>
+            <% end %>
+          <% end %>
+          <td><%= followers %></td>
+        </tr>
+        <br/>
+        <tr>
           <td>Number of Posts:</td>
           <% postnumber = 0 %>
           <% @content.reverse.each do |content| %>
@@ -52,7 +63,35 @@
           <% end %>
           <td><%= likestotal %></td>
         </tr>
-      </div>
+
+<!-- Follow Button -->
+      <% following = false %>
+      <% followid = 0 %>
+        <% @follow.each do |follow| %>
+          <% if follow.follower_id === current_user.id && follow.following_id === @user.id %>
+            <% following = true %>
+            <% followid = follow.id %>
+          <% end %> 
+        <% end %> 
+        <% if following == true %>
+          <div class='unfollow'>
+            <%= button_to "Unfollow", {:controller => :follows, :action => 'destroy', :id => followid } %>
+          </div>
+        <% else %>
+          <%= form_for :follows, url: '/follows' do |f| %>
+            <div class="cscform">
+              <div style="display: none;">
+                <%= f.text_field :following_id, :value => @user.id %>
+                <%= f.text_field :follower_id, :value => current_user.id %>
+              </div>
+            </div>
+            <br/>
+            <div class='follows'>
+              <%= f.submit "Follow", :height => '5%' %>
+            </div>
+          <% end %>
+        <% end %>
+    </div>
 
       <% if flash[:notice] %>
         <div class='flashnotice'><%= flash[:notice] %></div>
@@ -105,7 +144,7 @@
                     <div class='userlikebutton'>
                       <%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/214/214309.svg", :height => '12%' %>
                     </div>
-                      <% end %>
+                  <% end %>
                 <% else %>
                   <%= button_to "Remove Like", {:controller => :likes, :action => 'destroy', :id => likedid }, :method => :contents_delete%>
                 <% end %>

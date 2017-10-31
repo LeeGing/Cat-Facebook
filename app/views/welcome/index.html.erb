@@ -97,7 +97,7 @@
 									<div class='likebutton'>
 								  	<%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/214/214309.svg", :height => '5%' %>
 								  </div>
-								  	<% end %>
+								<% end %>
 						  <% else %>
 					 			<%= button_to "Remove Like", {:controller => :likes, :action => 'destroy', :id => likedid }, :method => :contents_delete%>
 						  <% end %>

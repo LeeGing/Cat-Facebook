@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031012514) do
+ActiveRecord::Schema.define(version: 20171031074022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,9 @@ ActiveRecord::Schema.define(version: 20171031012514) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "friends", force: :cascade do |t|
-    t.integer "sender_id"
-    t.string "sender_name"
-    t.integer "receiver_id"
-    t.string "receiver_name"
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,15 +45,6 @@ ActiveRecord::Schema.define(version: 20171031012514) do
     t.integer "content_id"
     t.integer "user_id"
     t.string "user_name"
-  end
-
-  create_table "requests", force: :cascade do |t|
-    t.integer "sender_id"
-    t.string "sender_name"
-    t.integer "receiver_id"
-    t.string "receiver_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "saves", force: :cascade do |t|

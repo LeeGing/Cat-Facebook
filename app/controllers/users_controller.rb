@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @like = Like.all
     @comment = Comment.all
     @save = Save.all
+    @follow = Follow.all
   end
 
 	def new
