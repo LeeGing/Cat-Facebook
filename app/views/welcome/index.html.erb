@@ -128,7 +128,15 @@
 								 	</div>
 								<% end %>
 						  <% else %>
-						 		<%= button_to "Remove Save", {:controller => :saves, :action => 'destroy', :id => saveid }, :method => :contents_delete%>
+						  	<% if liked == true %> 
+						 			<div>
+						 				<%= button_to "Remove Save", {:controller => :saves, :action => 'destroy', :id => saveid }, :method => :contents_delete%>
+						 			</div>
+						 		<% else %>
+						  		<div class='removesave'>
+						 				<%= button_to "Remove Save", {:controller => :saves, :action => 'destroy', :id => saveid }, :method => :contents_delete%>
+						 			</div>
+						 		<% end %>
 						  <% end %>
 						</div>
 					</div>
