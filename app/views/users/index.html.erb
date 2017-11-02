@@ -30,28 +30,6 @@
         </tr>
         <br/>
         <tr>
-          <td>Number of Followers:</td>
-          <% followers = 0 %>
-          <% @follow.reverse.each do |follow| %>
-            <% if follow.following_id == @user.id %> 
-              <% followers += 1 %>
-            <% end %>
-          <% end %>
-          <td><%= followers %></td>
-        </tr>
-        <br/>
-        <tr>
-          <td>Number of Posts:</td>
-          <% postnumber = 0 %>
-          <% @content.reverse.each do |content| %>
-            <% if content.user_id == @user.id %> 
-              <% postnumber += 1 %>
-            <% end %>
-          <% end %>
-          <td><%= postnumber %></td>
-        </tr>
-        <br/>
-        <tr>
           <td>Likes Collected:</td>
           <% likestotal = 0 %>
           <% @content.each do |content| %>
@@ -62,6 +40,28 @@
             <% end %>
           <% end %>
           <td><%= likestotal %></td>
+        </tr>
+        <br/>
+        <tr>
+          <td>Followers:</td>
+          <% followers = 0 %>
+          <% @follow.reverse.each do |follow| %>
+            <% if follow.following_id == @user.id %> 
+              <% followers += 1 %>
+            <% end %>
+          <% end %>
+          <td><%= followers %></td>
+        </tr>
+        <br/>
+        <tr>
+          <td>Posts:</td>
+          <% postnumber = 0 %>
+          <% @content.reverse.each do |content| %>
+            <% if content.user_id == @user.id %> 
+              <% postnumber += 1 %>
+            <% end %>
+          <% end %>
+          <td><%= postnumber %></td>
         </tr>
 
 <!-- Follow Button -->
@@ -75,7 +75,9 @@
         <% end %> 
         <% if following == true %>
           <div class='unfollow'>
-            <%= button_to "Unfollow", {:controller => :follows, :action => 'destroy', :id => followid } %>
+            <%= link_to image_tag("https://image.flaticon.com/icons/svg/166/166247.svg", :height => "15%"), {:controller => :follows, :action => 'destroy', :id => followid } %>
+            <p class="followtext"> Unfollow User</p>
+
           </div>
         <% else %>
           <%= form_for :follows, url: '/follows' do |f| %>
@@ -87,7 +89,8 @@
             </div>
             <br/>
             <div class='follows'>
-              <%= f.submit "Follow", :height => '5%' %>
+              <%= f.submit "Follow", :class => 'followbutton', :type => :image, :src => "https://image.flaticon.com/icons/svg/376/376915.svg", :height => "15%" %>
+              <p class="followtext"> Follow User </p>
             </div>
           <% end %>
         <% end %>
