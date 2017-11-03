@@ -40,10 +40,15 @@ Rails.application.routes.draw do
   get '/saved' => 'saves#index'
 
   post '/follows' => 'follows#create'
+  get '/follows' => 'follows#create'
 
   get '/follows/:id' => 'follows#destroy'
 
+  post '/follows/:id' => 'follows#destroy'
+
   get 'following' => 'follows#index'
+
+
   # get '/users/:id'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
