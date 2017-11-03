@@ -23,6 +23,9 @@ Cat Social Club is a web application that allows users to share their thoughts o
 
 [Text Posts - Global/Following and Likes]
 
+[Likes / Saves]
+<img src="/public/ls.gif">
+
 [User Profile]
 
 [Saves]
