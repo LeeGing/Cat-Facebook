@@ -12,23 +12,34 @@ Cat Social Club is a web application that allows users to share their thoughts o
 ## Features
 	- User Accounts - each user will be given a unique profile page, which displays their user information and their posts. 
 	- Text Posts - users are able to upload their text posts to share with other users.
-		-- Likes - uploaded text posts can be "liked" by users.
-		-- Saves - uploaded text posts can be saved for later viewing by users. 
+	-- Likes - uploaded text posts can be "liked" by users.
+	-- Saves - uploaded text posts can be saved for later viewing by users. 
 	- Follow/Unfollow - users are able to access other user profiles and follow/unfollow other users.
 	- Global/Following - users are able to filter between global text posts and the text posts of the users they are following. 
 
 ## Pictures
 
 [Sign Up User Accounts]
+<img src="/public/signup">
 
-[Text Posts - Global/Following and Likes]
+[Text Posts]
+<img src="/public/w.gif">
 
 [Likes / Saves]
 <img src="/public/ls.gif">
 
-[User Profile]
-
 [Saves]
+<img src="/public/s.gif">
+
+[User Profile]
+<img src="/public/user">
+
+[Follow / Unfollow]
+<img src="/public/fu.gif">
+
+[Global / Following]
+<img src="/public/gf.gif">
+
 
 ## Dependencies
  - Rails 5.1.4
