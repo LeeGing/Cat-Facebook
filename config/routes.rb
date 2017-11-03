@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get 'welcome/index'
 
   root 'welcome#index'
@@ -9,17 +10,18 @@ Rails.application.routes.draw do
 
 
   get '/login' => 'session#new'
+
   post '/login' => 'session#create'
+
   get '/logout' => 'session#destroy'
 
-
   get '/signup' => 'welcome#index'
+
   post '/users' => 'users#create'
 
   post '/contents' => 'contents#create'
 
   get '/users/:id' => 'users#index'
-
 
   post '/comments' => 'comments#create'
 
@@ -40,6 +42,7 @@ Rails.application.routes.draw do
   get '/saved' => 'saves#index'
 
   post '/follows' => 'follows#create'
+
   get '/follows' => 'follows#create'
 
   get '/follows/:id' => 'follows#destroy'
@@ -47,7 +50,6 @@ Rails.application.routes.draw do
   post '/follows/:id' => 'follows#destroy'
 
   get 'following' => 'follows#index'
-
 
   # get '/users/:id'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

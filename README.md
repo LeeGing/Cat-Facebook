@@ -1,26 +1,37 @@
-# README
+# Cat Social Club
 
+## A Ruby-on-Rails and PostgresQL Project. 
 
-Concerns:
-1. Email - has to take in lowercase into database.
-2. Unable to link to users/:user_id.
-3. Query for displaying related wall posts.
-4. If contents are entered with no space, it will float out of the box. 
-5. Should track which users are posting what content. 
-6. Figure out the FK and PK. 
-7. How to add user name to contents. 
+A social networking web application. 
+The purpose of this project was to refresh on Ruby-on-Rails in a fun way. 
 
+## Description
 
+Cat Social Club is a web application that allows users to share their thoughts online.
 
-Notes: 
-1. Users can target Users database and image.
-2. CFB icon now links to root.
-3. Root will render sign up form when not in session.
-4. Root will render scroll bar when in session. 
-5. session[:user_id] is targetable.
+## Features
+	- User Accounts - each user will be given a unique profile page, which displays their user information and their posts. 
+	- Text Posts - users are able to upload their text posts to share with other users.
+		-- Likes - uploaded text posts can be "liked" by users.
+		-- Saves - uploaded text posts can be saved for later viewing by users. 
+	- Follow/Unfollow - users are able to access other user profiles and follow/unfollow other users.
+	- Global/Following - users are able to filter between global text posts and the text posts of the users they are following. 
 
+## Pictures
 
-Idea:
-1. Add more details to users and sign up. 
+[Sign Up User Accounts]
 
+[Text Posts - Global/Following and Likes]
 
+[User Profile]
+
+[Saves]
+
+## Dependencies
+ - Rails 5.1.4
+ - PostgresQL
+
+## Set Up
+
+bundle install - to install all dependencies.
+rails s - to start server.

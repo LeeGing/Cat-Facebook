@@ -22,7 +22,6 @@ class ContentsController < ApplicationController
     flash[:notice] = "Invalid Entry"
   end
 
-
 end   
     
 private

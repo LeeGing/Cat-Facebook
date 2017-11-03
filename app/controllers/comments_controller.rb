@@ -1,10 +1,4 @@
 class CommentsController < ApplicationController
-	def index
-	end
-
-	def show
-
-	end
 
 	def create
 		comment = Comment.new(comment_params)
@@ -18,7 +12,6 @@ class CommentsController < ApplicationController
 			sleep(1.0)
 		end
 	end
-
 
 	def destroy
     @comment = Comment.find(params[:id])

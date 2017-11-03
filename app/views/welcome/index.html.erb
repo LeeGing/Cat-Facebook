@@ -1,6 +1,4 @@
 <% if !current_user %>
-
-<!-- Sign Up -->
 	<div class='signup'>
 		<div class='signupcontent'>
 			<h1 class="signuph1">Sign Up!</h1>
@@ -23,14 +21,9 @@
 			</div>
 		</div>
 	</div>
-
 <% else %> 
-	
-<!-- Content Feed -->
 	<main class="container" style="overflow-y: scroll; height:100%;" >
 		<div class='contentcolumn' align="center">
-
-<!-- Content Form -->
 			<a href='/following'>
 				<img class='house' src="https://image.flaticon.com/icons/svg/610/610256.svg" height="50px">
 			</a>
@@ -47,13 +40,9 @@
 				<br/>
 		  	<%= f.submit "Submit" %>
 			<% end %>
-
 	 		<% if flash[:notice] %>
     		<div class='flashnotice'><%= flash[:notice] %></div>
  		 	<% end %>
-
-
-<!-- Content Blocks -->
 			<section>
 				<% @content.reverse.each do |content| %>
 					<div class='userblock'>
@@ -69,13 +58,9 @@
 						<div class='contentpost'>
 							<p><%= content.content %> </p>
 						</div>
-
-	<!-- Content Delete Button -->
 						<% if content.user_id == current_user.id %>
 							<%= button_to "Delete Post", {:controller => :contents, :action => 'destroy', :id => content.id }, :method => :contentdelete %>
 						<% end %>
-							
-	<!-- Like Button -->
 						<div class='likeform'>
 							<% liked = false %>
 							<% likedid = 0 %>
@@ -104,79 +89,69 @@
 						  <% else %>
 					 			<%= button_to "Remove Like", {:controller => :likes, :action => 'destroy', :id => likedid }, :method => :contents_delete%>
 						  <% end %>
-
-	<!-- Save Form -->
-						<div>
-							<% saved = false %>
-							<% saveid = 0 %>
-							<% @save.each do |save| %>
-								<% if save.content_id === content.id %>
-									<% if save.user_id === current_user.id %>
-										<% saved = true %>
-										<% saveid = save.id %>
+							<div>
+								<% saved = false %>
+								<% saveid = 0 %>
+								<% @save.each do |save| %>
+									<% if save.content_id === content.id %>
+										<% if save.user_id === current_user.id %>
+											<% saved = true %>
+											<% saveid = save.id %>
+										<% end %>
 									<% end %>
 								<% end %>
-							<% end %>
-							<% if saved != true %>
-								<%= form_for :saves, url: '/saves' do |f| %>
-									<div class="cscform">
-										<div style="display: none;">
-											<%= f.text_field :user_id, :value => current_user.id %>			
-											<%= f.text_field :content_id, :value => content.id %>
+								<% if saved != true %>
+									<%= form_for :saves, url: '/saves' do |f| %>
+										<div class="cscform">
+											<div style="display: none;">
+												<%= f.text_field :user_id, :value => current_user.id %>			
+												<%= f.text_field :content_id, :value => content.id %>
+											</div>
 										</div>
-									</div>
-									<br/>
-									<div class='savebutton'>
-								 		<%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/179/179577.svg", :height => '4%' %>
-								 	</div>
-								<% end %>
-						  <% else %>
-						  	<% if liked == true %> 
-						 			<div>
-						 				<%= button_to "Remove Save", {:controller => :saves, :action => 'destroy', :id => saveid }, :method => :contents_delete%>
-						 			</div>
-						 		<% else %>
-						  		<div class='removesave'>
-						 				<%= button_to "Remove Save", {:controller => :saves, :action => 'destroy', :id => saveid }, :method => :contents_delete%>
-						 			</div>
+										<br/>
+										<div class='savebutton'>
+									 		<%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/179/179577.svg", :height => '4%' %>
+									 	</div>
+									<% end %>
+							  <% else %>
+							  	<% if liked == true %> 
+							 			<div>
+							 				<%= button_to "Remove Save", {:controller => :saves, :action => 'destroy', :id => saveid }, :method => :contents_delete%>
+							 			</div>
+								 	<% else %>
+						  			<div class='removesave'>
+						 					<%= button_to "Remove Save", {:controller => :saves, :action => 'destroy', :id => saveid }, :method => :contents_delete%>
+						 				</div>
+						 			<% end %>
 						 		<% end %>
-						  <% end %>
+							</div>
 						</div>
 					</div>
-						</div>
-
-	<!-- Likes Display -->
-						<% likes = 0 %>
-						<% @like.each do |like| %>
-							<% if content.id === like.content_id %>
-								<% likes += 1 %>
-							<%end%>
-						<% end %>
-						<p>This post was liked <%= likes %> times.</p>
-
-	<!-- Comment Blocks -->
-					<h3 class = "commenth3"> Comments </h3>
-					<% @comment.each do |comment| %>
-						<% if comment.content_id === content.id %>
-							<div class='commentblock'>
-								<div class='usercommentborder'>
-									<img class='userimg' height="60px" width="60px" src=<%= comment.user_image %>>
-									<div class="commentusername">
-										<a href="users/<%= comment.user_id.to_s %>"> <%= comment.user_name%></a>
-									</div>
-									<p> <%= comment.created_at %> </p>
-								</div>
-								<p class="comment"> <%= comment.comment %> </p>
-
-	<!-- Comment Delete Button -->
-				    		<% if comment.user_id == current_user.id %>
-									<%= button_to "Delete", {:controller => :comments, :action => 'destroy', :id => comment.id }, :method => :contents_delete %>
-				  		  <% end %>
-							</div>
-				 	 	<% end %> 
+					<% likes = 0 %>
+					<% @like.each do |like| %>
+						<% if content.id === like.content_id %>
+							<% likes += 1 %>
+						<%end%>
 					<% end %>
-
-	<!-- Comment Form -->
+					<p>This post was liked <%= likes %> times.</p>
+				<h3 class = "commenth3"> Comments </h3>
+				<% @comment.each do |comment| %>
+					<% if comment.content_id === content.id %>
+						<div class='commentblock'>
+							<div class='usercommentborder'>
+								<img class='userimg' height="60px" width="60px" src=<%= comment.user_image %>>
+								<div class="commentusername">
+									<a href="users/<%= comment.user_id.to_s %>"> <%= comment.user_name%></a>
+								</div>
+								<p> <%= comment.created_at %> </p>
+							</div>
+							<p class="comment"> <%= comment.comment %> </p>
+			    		<% if comment.user_id == current_user.id %>
+								<%= button_to "Delete", {:controller => :comments, :action => 'destroy', :id => comment.id }, :method => :contents_delete %>
+			  		  <% end %>
+						</div>
+			 	 	<% end %> 
+				<% end %>
 					<div class='commentblock'>
 						<%= form_for :comments, url: '/comments' do |f| %>
 							<div class="cscform">
@@ -194,7 +169,7 @@
 	  					<%= f.submit "Submit" %>
 	  				<% end %>
 	  			</div>
-				<%end %> <!-- End to @Content -->
+				<%end %> 
 			</section>
 		</div>
 	</main>

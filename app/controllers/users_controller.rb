@@ -8,13 +8,9 @@ class UsersController < ApplicationController
     @follow = Follow.all
   end
 
-	def new
-  end
-
   def show
     @users = User.where(id: params[:id])
   end
-
 
   def create
   	user = User.new(user_params)

@@ -1,6 +1,4 @@
 <% if !current_user %>
-
-<!-- Sign Up -->
   <div class='signup'>
     <div class='signupcontent'>
       <h1>Forbidden</h1>
@@ -8,10 +6,8 @@
       <a href="/" class="button"> Sign Up Here </a>
     </div>
   </div>
-
 <% else %> 
-
-  <main class="container">
+  <main class="container" style="overflow-y: scroll; height:100%;">
     <div align="center">
       <div class="userprofile">
         <div class='userimage'>
@@ -62,8 +58,6 @@
           <% end %>
           <td><%= postnumber %></td>
         </tr>
-
-<!-- Follow Button -->
       <% following = false %>
       <% followid = 0 %>
         <% @follow.each do |follow| %>
@@ -74,9 +68,10 @@
         <% end %> 
         <% if following == true %>
           <div class='unfollow'>
-            <%= link_to image_tag("https://image.flaticon.com/icons/svg/166/166247.svg", :height => "15%"), {:controller => :follows, :action => 'destroy', :id => followid } %>
+            <%= link_to image_tag("https://image.flaticon.com/icons/svg/166/166247.svg", :height => "5%"), {:controller => :follows, :action => 'destroy', :id => followid } %>
+          </div>
+          <div>
             <p class="followtext"> Unfollow User</p>
-
           </div>
         <% else %>
           <%= form_for :follows, url: '/follows' do |f| %>
@@ -88,26 +83,25 @@
             </div>
             <br/>
             <div class='follows'>
-              <%= f.submit "Follow", :class => 'followbutton', :type => :image, :src => "https://image.flaticon.com/icons/svg/376/376915.svg", :height => "15%" %>
+              <%= f.submit "Follow", :class => 'followbutton', :type => :image, :src => "https://image.flaticon.com/icons/svg/376/376915.svg", :height => "5%" %>
+            </div>
+            <div>
               <p class="followtext"> Follow User </p>
             </div>
           <% end %>
         <% end %>
-    </div>
-
+      </div>
       <% if flash[:notice] %>
         <div class='flashnotice'><%= flash[:notice] %></div>
       <% end %>
-
-  <!-- User Wall -->
       <section>
         <% @content.reverse.each do |content| %>
-          <% if content.user_id == @user.id %>
+            <% if content.user_id == @user.id %>
             <div class='userblock'>
               <div class='userblockborder'>
                 <img class='userimg' height="60px" width="60px" src=<%= content.user_image %>>
                   <div class='username'>
-                    <a href="users/<%= content.user_id.to_s %>"> <%= content.user_name%></a>
+                    <a href="/users/<%= content.user_id.to_s %>"> <%= content.user_name%></a>
                     <p class='contenttime'> Time:<%=content.created_at %> </p>
                   </div>
               </div>
@@ -116,43 +110,37 @@
               <div class='contentpost'>
                 <p><%= content.content %> </p>
               </div>
-
-        <!-- Content Delete Button -->
               <% if content.user_id == current_user.id %>
                 <%= button_to "Delete Post", {:controller => :contents, :action => 'destroy', :id => content.id }, :method => :contentdelete %>
               <% end %>
-                
-      <!-- Like Button -->
-                <div class='likeform'>
-                  <% liked = false %>
-                  <% likedid = 0 %>
-                  <% @like.each do |like| %>
-                    <% if like.content_id === content.id %>
-                      <% if like.user_id === current_user.id %>
-                        <% liked = true %>
-                        <% likedid = like.id %>
-                      <% end %>
+              <div class='likeform'>
+                <% liked = false %>
+                <% likedid = 0 %>
+                <% @like.each do |like| %>
+                  <% if like.content_id === content.id %>
+                    <% if like.user_id === current_user.id %>
+                      <% liked = true %>
+                      <% likedid = like.id %>
                     <% end %>
                   <% end %>
-                  <% if liked != true %>
-                    <%= form_for :likes, url: '/likes' do |f| %>
-                      <div class="cscform">
-                        <div style="display: none;">
-                          <%= f.text_field :content_id, :value => content.id %>
-                          <%= f.text_field :user_id, :value => current_user.id %>
-                          <%= f.text_field :user_name, :value => current_user.name %>         
-                        </div>
+                <% end %>
+                <% if liked != true %>
+                  <%= form_for :likes, url: '/likes' do |f| %>
+                    <div class="cscform">
+                      <div style="display: none;">
+                        <%= f.text_field :content_id, :value => content.id %>
+                        <%= f.text_field :user_id, :value => current_user.id %>
+                        <%= f.text_field :user_name, :value => current_user.name %>         
                       </div>
-                      <br/>
-                      <div class='userlikebutton'>
-                        <%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/214/214309.svg", :height => '12%' %>
-                      </div>
-                    <% end %>
-                  <% else %>
-                    <%= button_to "Remove Like", {:controller => :likes, :action => 'destroy', :id => likedid }, :method => :contents_delete%>
+                    </div>
+                    <br/>
+                    <div class='userlikebutton'>
+                      <%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/214/214309.svg", :height => '5%' %>
+                    </div>
                   <% end %>
-
-      <!-- Save Form -->
+                <% else %>
+                  <%= button_to "Remove Like", {:controller => :likes, :action => 'destroy', :id => likedid }, :method => :contents_delete%>
+                <% end %>
                 <div>
                   <% saved = false %>
                   <% saveid = 0 %>
@@ -174,7 +162,7 @@
                       </div>
                       <br/>
                       <div class='usersavebutton'>
-                        <%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/179/179577.svg", :height => '10%' %>
+                        <%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/179/179577.svg", :height => '4%' %>
                       </div>
                     <% end %>
                   <% else %>
@@ -190,19 +178,14 @@
                   <% end %>
                 </div>
               </div>
-                </div>
-
-      <!-- Likes Display -->
-                <% likes = 0 %>
-                <% @like.each do |like| %>
-                  <% if content.id === like.content_id %>
-                    <% likes += 1 %>
-                  <%end%>
-                <% end %>
-                <p>This post was liked <%= likes %> times.</p>
-
-
-        <!-- Comment Blocks -->
+            </div>
+            <% likes = 0 %>
+            <% @like.each do |like| %>
+              <% if content.id === like.content_id %>
+                <% likes += 1 %>
+              <%end%>
+            <% end %>
+            <p>This post was liked <%= likes %> times.</p>
             <h3 class = "commenth3"> Comments </h3>
             <% @comment.each do |comment| %>
               <% if comment.content_id === content.id %>
@@ -210,21 +193,17 @@
                   <div class='usercommentborder'>
                     <img class='userimg' height="60px" width="60px" src=<%= comment.user_image %>>
                     <div class="commentusername">
-                      <a href="users/<%= comment.user_id.to_s %>"> <%= comment.user_name%></a>
+                      <a href="/users/<%= comment.user_id.to_s %>"> <%= comment.user_name%></a>
                     </div>
                     <p> <%= comment.created_at %> </p>
                   </div>
                   <p class="comment"> <%= comment.comment %> </p>
-
-        <!-- Comment Delete Button -->
                   <% if comment.user_id === current_user.id %>
                     <%= button_to "Delete", {:controller => :comments, :action => 'destroy', :id => comment.id }, :method => :contents_delete %>
                   <% end %>
                 </div>
               <% end %> 
             <% end %>
-
-        <!-- Comment Form -->
             <div class='commentblock'>
               <%= form_for :comments, url: '/comments' do |f| %>
                 <div class="cscform">
@@ -243,7 +222,7 @@
               <% end %>
             </div>
           <% end %>
-        <%end %> <!-- End to @Content -->
+        <%end %> 
       </section>
     </div>
   </main>
