@@ -3,7 +3,7 @@
 ## A Ruby-on-Rails and PostgresQL Project. 
 
 A social networking web application. 
-The purpose of this project was to refresh on Ruby-on-Rails in a fun way. 
+The purpose of this project was to refresh on Ruby-on-Rails, and to become more comfortable with CSS in a fun way. 
 
 ## Description
 
