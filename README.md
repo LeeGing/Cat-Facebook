@@ -18,6 +18,15 @@ Cat Social Club is a web application that allows users to share their thoughts o
 	- Follow/Unfollow  - users are able to access other user profiles and follow/unfollow other users.
 	- Global/Following - users are able to filter between global text posts and the text posts of the users they are following. 
 
+## Dependencies
+ - Rails 5.1.4
+ - PostgresQL
+
+## Set Up
+
+- bundle install - to install all dependencies.
+- rails s - to start server.
+
 ## Pictures
 
 ##### [Sign Up / Log In]
@@ -46,13 +55,3 @@ Cat Social Club is a web application that allows users to share their thoughts o
 
 ##### [Responsive Pages] 
 <img src="/public/ur.gif">
-
-
-## Dependencies
- - Rails 5.1.4
- - PostgresQL
-
-## Set Up
-
-- bundle install - to install all dependencies.
-- rails s - to start server.
