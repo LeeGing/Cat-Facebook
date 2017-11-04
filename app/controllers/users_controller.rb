@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
   def index
     @user = User.find(params[:id])
-  end
-
-	def new
+    @content = Content.all
+    @like = Like.all
+    @comment = Comment.all
+    @save = Save.all
+    @follow = Follow.all
   end
 
   def show
     @users = User.where(id: params[:id])
   end
-
 
   def create
   	user = User.new(user_params)
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
   		session[:user_id] = user.id
   		redirect_to ''
   	else 
-  		redirect_to '/'
+  		redirect_to ''
       flash[:notice] = "Invalid Entry"
   	end
   end   
@@ -25,8 +26,7 @@ class UsersController < ApplicationController
 private
 		
 		def user_params
-  		params.require(:user).permit(:name, :location, :image, :email.downcase, :password, :password_confirmation)
+  		params.require(:user).permit(:name, :location, :image, :email, :password, :password_confirmation)
 		end
 
 end
-

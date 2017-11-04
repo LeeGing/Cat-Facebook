@@ -1,29 +1,229 @@
-<main class="container">
-	<div align="center">
-
-		<div class="userprofile">
-			
-			<img class='userimage' src=<%= @user.image %> height='200px'></img>
-
-			<h2 class='username'> <%= @user.name %> </h2>
-
-
-			
-
-			<tr>
-			<td>Email: </td>
-			<td><%= @user.email %></td>
-			</tr>
-			<br/>
-			<tr>
-			<td>Location:</td>
-			<td><%= @user.location %></td>
-			</tr>
-			<!-- A dropdown menu that has locations -->
-
-
-	</div>
-	<section class="postblock">
-			<p> </p>
-	</section>
-</main>
+<% if !current_user %>
+  <div class='signup'>
+    <div class='signupcontent'>
+      <h1>Forbidden</h1>
+      <p> Please log in to view user profiles.</p>
+      <a href="/" class="button"> Sign Up Here </a>
+    </div>
+  </div>
+<% else %> 
+  <main class="container" style="overflow-y: scroll; height:100%;">
+    <div align="center">
+      <div class="userprofile">
+        <div class='userimage'>
+        	<img src=<%= @user.image %> height='200px' width='200px'></img>
+        </div>
+        <h2 class='username'> <%= @user.name %> </h2>
+        <tr>
+          <td>Email: </td>
+          <td><%= @user.email %></td>
+        </tr>
+        <br/>
+        <tr>
+          <td>Location:</td>
+          <td><%= @user.location %></td>
+        </tr>
+        <br/>
+        <tr>
+          <td>Likes Collected:</td>
+          <% likestotal = 0 %>
+          <% @content.each do |content| %>
+            <% @like.each do |like|  %>
+              <% if content.id === like.content_id && content.user_id === @user.id%> 
+                <% likestotal += 1 %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <td><%= likestotal %></td>
+        </tr>
+        <br/>
+        <tr>
+          <td>Followers:</td>
+          <% followers = 0 %>
+          <% @follow.reverse.each do |follow| %>
+            <% if follow.following_id == @user.id %> 
+              <% followers += 1 %>
+            <% end %>
+          <% end %>
+          <td><%= followers %></td>
+        </tr>
+        <br/>
+        <tr>
+          <td>Posts:</td>
+          <% postnumber = 0 %>
+          <% @content.reverse.each do |content| %>
+            <% if content.user_id == @user.id %> 
+              <% postnumber += 1 %>
+            <% end %>
+          <% end %>
+          <td><%= postnumber %></td>
+        </tr>
+      <% following = false %>
+      <% followid = 0 %>
+        <% @follow.each do |follow| %>
+          <% if follow.follower_id === current_user.id && follow.following_id === @user.id %>
+            <% following = true %>
+            <% followid = follow.id %>
+          <% end %> 
+        <% end %> 
+        <% if following == true %>
+          <div class='unfollow'>
+            <%= link_to image_tag("https://image.flaticon.com/icons/svg/166/166247.svg", :height => "5%"), {:controller => :follows, :action => 'destroy', :id => followid } %>
+          </div>
+          <div>
+            <p class="followtext"> Unfollow User</p>
+          </div>
+        <% else %>
+          <%= form_for :follows, url: '/follows' do |f| %>
+            <div class="cscform">
+              <div style="display: none;">
+                <%= f.text_field :following_id, :value => @user.id %>
+                <%= f.text_field :follower_id, :value => current_user.id %>
+              </div>
+            </div>
+            <br/>
+            <div class='follows'>
+              <%= f.submit "Follow", :class => 'followbutton', :type => :image, :src => "https://image.flaticon.com/icons/svg/376/376915.svg", :height => "5%" %>
+            </div>
+            <div>
+              <p class="followtext"> Follow User </p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <% if flash[:notice] %>
+        <div class='flashnotice'><%= flash[:notice] %></div>
+      <% end %>
+      <section>
+        <% @content.reverse.each do |content| %>
+            <% if content.user_id == @user.id %>
+            <div class='userblock'>
+              <div class='userblockborder'>
+                <img class='userimg' height="60px" width="60px" src=<%= content.user_image %>>
+                  <div class='username'>
+                    <a href="/users/<%= content.user_id.to_s %>"> <%= content.user_name%></a>
+                    <p class='contenttime'> Time:<%=content.created_at %> </p>
+                  </div>
+              </div>
+            </div>
+            <div class='blockcontent'>
+              <div class='contentpost'>
+                <p><%= content.content %> </p>
+              </div>
+              <% if content.user_id == current_user.id %>
+                <%= button_to "Delete Post", {:controller => :contents, :action => 'destroy', :id => content.id }, :method => :contentdelete %>
+              <% end %>
+              <div class='likeform'>
+                <% liked = false %>
+                <% likedid = 0 %>
+                <% @like.each do |like| %>
+                  <% if like.content_id === content.id %>
+                    <% if like.user_id === current_user.id %>
+                      <% liked = true %>
+                      <% likedid = like.id %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <% if liked != true %>
+                  <%= form_for :likes, url: '/likes' do |f| %>
+                    <div class="cscform">
+                      <div style="display: none;">
+                        <%= f.text_field :content_id, :value => content.id %>
+                        <%= f.text_field :user_id, :value => current_user.id %>
+                        <%= f.text_field :user_name, :value => current_user.name %>         
+                      </div>
+                    </div>
+                    <br/>
+                    <div class='userlikebutton'>
+                      <%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/214/214309.svg", :height => '5%' %>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <%= button_to "Remove Like", {:controller => :likes, :action => 'destroy', :id => likedid }, :method => :contents_delete%>
+                <% end %>
+                <div>
+                  <% saved = false %>
+                  <% saveid = 0 %>
+                  <% @save.each do |save| %>
+                    <% if save.content_id === content.id %>
+                      <% if save.user_id === current_user.id %>
+                        <% saved = true %>
+                        <% saveid = save.id %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <% if saved != true %>
+                    <%= form_for :saves, url: '/saves' do |f| %>
+                      <div class="cscform">
+                        <div style="display: none;">
+                          <%= f.text_field :user_id, :value => current_user.id %>     
+                          <%= f.text_field :content_id, :value => content.id %>
+                        </div>
+                      </div>
+                      <br/>
+                      <div class='usersavebutton'>
+                        <%= f.submit "", :type => :image, :src => "https://image.flaticon.com/icons/svg/179/179577.svg", :height => '4%' %>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <% if liked == true %> 
+                      <div>
+                        <%= button_to "Remove Save", {:controller => :saves, :action => 'destroy', :id => saveid }, :method => :contents_delete%>
+                      </div>
+                    <% else %>
+                      <div class='userremovesave'>
+                        <%= button_to "Remove Save", {:controller => :saves, :action => 'destroy', :id => saveid }, :method => :contents_delete%>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <% likes = 0 %>
+            <% @like.each do |like| %>
+              <% if content.id === like.content_id %>
+                <% likes += 1 %>
+              <%end%>
+            <% end %>
+            <p>This post was liked <%= likes %> times.</p>
+            <h3 class = "commenth3"> Comments </h3>
+            <% @comment.each do |comment| %>
+              <% if comment.content_id === content.id %>
+                <div class='commentblock'>
+                  <div class='usercommentborder'>
+                    <img class='userimg' height="60px" width="60px" src=<%= comment.user_image %>>
+                    <div class="commentusername">
+                      <a href="/users/<%= comment.user_id.to_s %>"> <%= comment.user_name%></a>
+                    </div>
+                    <p> <%= comment.created_at %> </p>
+                  </div>
+                  <p class="comment"> <%= comment.comment %> </p>
+                  <% if comment.user_id === current_user.id %>
+                    <%= button_to "Delete", {:controller => :comments, :action => 'destroy', :id => comment.id }, :method => :contents_delete %>
+                  <% end %>
+                </div>
+              <% end %> 
+            <% end %>
+            <div class='commentblock'>
+              <%= form_for :comments, url: '/comments' do |f| %>
+                <div class="cscform">
+                  <div style="display: none;">
+                    <%= f.text_field :content_id, :value => content.id %>
+                    <%= f.text_field :user_id, :value => current_user.id %>
+                    <%= f.text_field :user_name, :value => current_user.name %>
+                    <%= f.text_field :user_image, :value => current_user.image %>
+                  </div>
+                </div>
+                <div class='commentform'>
+                  <%= f.text_field :comment, placeholder: "Enter Comment Here", style: 'width: 200px; display: block; text-align: center' %>
+                </div>
+                <br/>
+                <%= f.submit "Submit" %>
+              <% end %>
+            </div>
+          <% end %>
+        <%end %> 
+      </section>
+    </div>
+  </main>
+<% end %>

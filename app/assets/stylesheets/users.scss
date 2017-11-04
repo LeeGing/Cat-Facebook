@@ -4,15 +4,125 @@
 
 .userimage{
 float:left;
-margin-right:10px;
+margin:0px;	
 }
 
 .userprofile {
-	margin-top:5em;
-	margin-left:10em;
-	font-weight:bold;
+  margin-top:2em;
+  margin-left:10em;
+  margin-right: 12em;
+  font-weight:bold;
+  margin-bottom: 50px;
+  border-bottom: 1px solid;
+}
+
+.userblock {
+  background-color: #43C4FA;
+  color: #4C4B63;
+}
+
+.userblock a {
+  font-size: 30px;
+  color: white;
 }
 
 .container {
-	height: 17em;
+  margin:relative;
+}
+
+.containerinfo {
+  overflow: auto;
+  word-wrap: break-word;
+}
+
+.userimage img {
+  margin-left: 84px;
+  margin-right: 15px;
+  border: 1px solid;
+}
+
+.userblock {
+  color: #4C4B63;
+  display:inline;
+}
+
+.userblock a {
+  color: white;
+}
+
+.contentinfo {
+  margin-top: 20px;
+}
+
+.blockcontent {
+  border:1px solid;
+  padding-bottom:30px;
+}
+
+.commentform {
+  margin-bottom: 30px;
+}
+
+.contentcolumn form{
+  margin-top: 50px;
+  margin-bottom:80px;
+}
+
+.commenth3 {
+  border: 1px solid;
+  width: 60%;
+}
+
+.block {
+  padding-bottom: 10px;
+}
+
+.commentusername {
+  padding-top:30px;
+  color:white;
+  text-decoration: none;
+}
+
+.commentusername a {
+  color:white;
+  text-decoration: none;
+}
+
+.comment {
+  margin:20px;
+}
+
+.contentpost{
+  padding-top:30px;
+}
+
+.userlikebutton {
+  float:right; 
+  margin-top:35px;
+  margin-right:200px;
+}
+
+.usersavebutton {
+  float:left; 
+  margin-left:200px;
+}
+
+.userremovesave {
+  margin-left: 235px;
+}
+
+.unfollow {
+  margin-top:35px;
+}
+
+.followtext {
+  margin-left:200px;
+  color: #43C4FA;
+  width:100px;
+  margin-top:10px;
+  margin-left:300px;
+}
+
+.userinfobutton {
+  color: #43C4FA;
 }
